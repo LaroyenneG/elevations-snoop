@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/LaroyenneG/elevations-snoop/issues"
   },
-  "homepage": "https://github.com/LaroyenneG/elevations-snoop#readme"
+  "homepage": "https://github.com/LaroyenneG/elevations-snoop#readme",
+  "dependencies": {
+    "sync-request": "^6.1.0"
+  },
+  "devDependencies": {
+    "node-html-parser": "^1.1.16"
+  }
 }
