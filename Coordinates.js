@@ -5,10 +5,10 @@ const KEY_BASE = 10;
 
 class Coordinates {
 
-    constructor(latitude = 0, longitude = 0, precision = DEFAULT_PRECISION) {
+    constructor(latitude = 0, longitude = 0, precision = -1) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.precision = precision;
+        this.precision = (precision <= 0) ? DEFAULT_PRECISION : precision;
     }
 
     readKey(string = "") {

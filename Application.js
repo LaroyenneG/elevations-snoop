@@ -1,8 +1,9 @@
-const Elevation = require('./Elevation');
+const Snoop = require('./Snoop');
 
+let snoop = new Snoop(45, 48, 7, 8, 2);
 
-let elevation = new Elevation(47.91608, 6.827166);
+snoop.generateElevations();
 
-elevation.findElevation();
+console.log("Not founds = " + snoop.findElevations());
 
-console.log(elevation);
+console.log(snoop.elevations);
