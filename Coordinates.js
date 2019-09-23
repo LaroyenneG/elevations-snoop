@@ -1,6 +1,6 @@
-const DEFAULT_PRECISION = 5;
-const KEY_SPLIT_CHAR = '/';
-const KEY_BASE = 10;
+export const DEFAULT_PRECISION = 5;
+export const KEY_SPLIT_CHAR = '/';
+export const KEY_BASE = 10;
 
 
 class Coordinates {

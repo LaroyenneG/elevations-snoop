@@ -1,4 +1,6 @@
 const Elevation = require('./Elevation');
+const SnoopBounds = require('./SnoopBounds');
+
 const request = require('sync-request');
 const util = require('util');
 const HTMLParser = require('node-html-parser');
@@ -6,15 +8,6 @@ const HTMLParser = require('node-html-parser');
 const USER_AGENT = "'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36'";
 const URL = "https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/alti/rest/elevation.xml?lon=%f&lat=%f";
 
-class SnoopBounds {
-    constructor(minLatitude = 0, maxLatitude = 0, minLongitude = 0, maxLongitude = 0, precision = -1) {
-        this.minLatitude = minLatitude;
-        this.maxLatitude = maxLatitude;
-        this.minLongitude = minLongitude;
-        this.maxLongitude = maxLongitude;
-        this.precision = precision;
-    }
-}
 
 class Snoop {
 
