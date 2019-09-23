@@ -20,7 +20,7 @@ class Snoop {
 
         if (elevation !== null) {
 
-            let url = util.format(URL, elevation.coordinates.longitude, elevation.coordinates.latitude);
+            let url = util.format(URL, elevation.longitude, elevation.latitude);
 
             let res = request('GET', url, {
                 headers: {'User-Agent': USER_AGENT}
@@ -39,8 +39,8 @@ class Snoop {
                 let longitude = parseFloat(eltLongitude.innerHTML);
                 let altitude = parseFloat(eltElevation.innerHTML);
 
-                elevation.coordinates.latitude = latitude;
-                elevation.coordinates.longitude = longitude;
+                elevation.latitude = latitude;
+                elevation.longitude = longitude;
                 elevation.altitude = altitude;
             } else {
                 throw new Error("Invalid elements");
@@ -65,26 +65,22 @@ class Snoop {
 
     findElevations() {
 
-        let failed = [];
-
-        for (let i = 0; i < this.elevations.length; i++) {
+        this.elevations.forEach((elevation) => {
             try {
-                Snoop.findElevation(this.elevations[i]);
+                Snoop.findElevation(elevation);
             } catch (e) {
-                failed.push(i);
             }
-        }
+        });
 
         let failedCounter = 0;
 
-        for (let i = 0; i < failed.length; i++) {
+        this.elevations.filter((elevation) => !elevation.isCorrect()).forEach((elevation) => {
             try {
-                Snoop.findElevation(this.elevations[failed[i]]);
+                Snoop.findElevation(elevation);
             } catch (e) {
                 failedCounter++;
             }
-        }
-
+        });
 
         return failedCounter;
     }
