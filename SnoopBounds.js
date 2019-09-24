@@ -1,5 +1,7 @@
+const Constants = require('./Constants');
+
 class SnoopBounds {
-    constructor(minLatitude = 0, maxLatitude = 0, minLongitude = 0, maxLongitude = 0, precision = -1) {
+    constructor(minLatitude = 0, maxLatitude = 0, minLongitude = 0, maxLongitude = 0, precision = Constants.UNKNOWN_VALUE) {
         this.minLatitude = minLatitude;
         this.maxLatitude = maxLatitude;
         this.minLongitude = minLongitude;

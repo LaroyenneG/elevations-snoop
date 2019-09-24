@@ -18,9 +18,13 @@
   },
   "homepage": "https://github.com/LaroyenneG/elevations-snoop#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.6.0",
     "sync-request": "^6.1.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
     "node-html-parser": "^1.1.16"
   }
 }

@@ -1,19 +1,15 @@
+const Constants = require('./Constants');
+
 const InvalidCoordinateKeyException = require('./InvalidCoordinatesKeyException');
 const InvalidCoordinatesPrecisionException = require('./InvalidCoordinatesPrecisionException');
 const InvalidCoordinatesBoundsException = require('./InvalidCoordinatesBoundsException');
 
-const DEFAULT_PRECISION = 5;
-const KEY_SPLIT_CHAR = '/';
-const KEY_BASE = 10;
-const LATITUDE_BOUNDS = [-90.0, 90.0];
-const LONGITUDE_BOUNDS = [-180.0, 180.0];
-
 class Coordinates {
 
-    constructor(latitude = 0, longitude = 0, precision = -Infinity) {
+    constructor(latitude = 0, longitude = 0, precision = Constants.UNKNOWN_VALUE) {
         this.latitude = latitude;
         this.longitude = longitude;
-        this.precision = (precision <= 0) ? DEFAULT_PRECISION : precision;
+        this.precision = (precision <= 0) ? Constants.DEFAULT_PRECISION : precision;
     }
 
     get latitude() {
@@ -21,7 +17,7 @@ class Coordinates {
     }
 
     set latitude(latitude) {
-        if (latitude <= LATITUDE_BOUNDS[1] && latitude >= LATITUDE_BOUNDS[0]) {
+        if (latitude <= Constants.LATITUDE_BOUNDS[1] && latitude >= Constants.LATITUDE_BOUNDS[0]) {
             this._latitude = latitude;
         } else {
             throw new InvalidCoordinatesBoundsException();
@@ -33,7 +29,7 @@ class Coordinates {
     }
 
     set longitude(longitude) {
-        if (longitude <= LONGITUDE_BOUNDS[1] && longitude >= LONGITUDE_BOUNDS[0]) {
+        if (longitude <= Constants.LONGITUDE_BOUNDS[1] && longitude >= Constants.LONGITUDE_BOUNDS[0]) {
             this._longitude = longitude;
         } else {
             throw new InvalidCoordinatesBoundsException();
@@ -53,15 +49,15 @@ class Coordinates {
     }
 
     readKey(string = "") {
-        let numbers = string.split(KEY_SPLIT_CHAR);
+        let numbers = string.split(Constants.KEY_SPLIT_CHAR);
 
         if (numbers.length !== 3) {
             throw new InvalidCoordinateKeyException();
         }
 
         let precision = parseInt(numbers[2]);
-        let latitude = parseInt(numbers[0]) / Math.pow(KEY_BASE, precision);
-        let longitude = parseInt(numbers[1]) / Math.pow(KEY_BASE, precision);
+        let latitude = parseInt(numbers[0]) / Math.pow(Constants.KEY_BASE, precision);
+        let longitude = parseInt(numbers[1]) / Math.pow(Constants.KEY_BASE, precision);
 
         this.latitude = latitude;
         this.longitude = longitude;
@@ -70,13 +66,13 @@ class Coordinates {
 
     decimalToKey(number) {
 
-        let convertNumber = Math.round(number * Math.pow(KEY_BASE, this.precision));
+        let convertNumber = Math.round(number * Math.pow(Constants.KEY_BASE, this.precision));
 
         return convertNumber.toString();
     }
 
     key() {
-        return this.decimalToKey(this.latitude) + KEY_SPLIT_CHAR + this.decimalToKey(this.longitude) + KEY_SPLIT_CHAR + this.precision;
+        return this.decimalToKey(this.latitude) + Constants.KEY_SPLIT_CHAR + this.decimalToKey(this.longitude) + Constants.KEY_SPLIT_CHAR + this.precision;
     }
 
     toString() {

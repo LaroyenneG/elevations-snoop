@@ -1,8 +1,6 @@
+const Constants = require('./Constants');
 const Coordinates = require('./Coordinates');
 const InvalidElevationAltitudeException = require('./InvalidElevationAltitudeException');
-
-const KEY_SPLIT_CHAR = '/';
-const ALTITUDE_BOUNDS = [-500, 9000];
 
 class Elevation extends Coordinates {
 
@@ -17,7 +15,7 @@ class Elevation extends Coordinates {
     }
 
     set altitude(altitude) {
-        if (altitude <= ALTITUDE_BOUNDS[1] && altitude >= ALTITUDE_BOUNDS[0]) {
+        if (altitude <= Constants.ALTITUDE_BOUNDS[1] && altitude >= Constants.ALTITUDE_BOUNDS[0]) {
             this._altitude = altitude;
             this.flag = true;
         } else {
@@ -26,7 +24,7 @@ class Elevation extends Coordinates {
     }
 
     toString() {
-        return super.toString() + KEY_SPLIT_CHAR + this.altitude;
+        return super.toString() + Constants.KEY_SPLIT_CHAR + this.altitude;
     }
 
     isCorrect() {

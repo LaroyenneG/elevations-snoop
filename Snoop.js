@@ -1,3 +1,4 @@
+const Constants = require('./Constants');
 const Elevation = require('./Elevation');
 const SnoopBounds = require('./SnoopBounds');
 
@@ -5,13 +6,11 @@ const request = require('sync-request');
 const util = require('util');
 const HTMLParser = require('node-html-parser');
 
-const USER_AGENT = "'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36'";
-const URL = "https://wxs.ign.fr/an7nvfzojv5wa96dsga5nk8w/alti/rest/elevation.xml?lon=%f&lat=%f";
 const WEB_SITE_ERROR_MESSAGE = "Invalid web page format";
 
 class Snoop {
 
-    constructor(minLatitude = 0, maxLatitude = 0, minLongitude = 0, maxLongitude = 0, precision = -1) {
+    constructor(minLatitude = 0, maxLatitude = 0, minLongitude = 0, maxLongitude = 0, precision = Constants.UNKNOWN_VALUE) {
         this.snoopBounds = new SnoopBounds(minLatitude, maxLatitude, minLongitude, maxLongitude, precision);
         this.elevations = [];
     }
@@ -20,10 +19,10 @@ class Snoop {
 
         if (elevation !== null) {
 
-            let url = util.format(URL, elevation.longitude, elevation.latitude);
+            let url = util.format(Constants.URL, elevation.longitude, elevation.latitude);
 
             let res = request('GET', url, {
-                headers: {'User-Agent': USER_AGENT}
+                headers: {'User-Agent': Constants.USER_AGENT}
             });
 
             let body = res.getBody('utf8');
