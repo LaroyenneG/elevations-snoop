@@ -6,7 +6,7 @@ const ALTITUDE_BOUNDS = [-500, 9000];
 
 class Elevation extends Coordinates {
 
-    constructor(latitude, longitude, altitude = -Infinity, precision = -Infinity, flag = false) {
+    constructor(latitude, longitude, precision = -Infinity, altitude = -Infinity, flag = false) {
         super(latitude, longitude, precision);
         this._altitude = altitude;
         this.flag = flag;
