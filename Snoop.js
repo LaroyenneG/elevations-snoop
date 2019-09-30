@@ -10,8 +10,8 @@ const WEB_SITE_ERROR_MESSAGE = "Invalid web page format";
 
 class Snoop {
 
-    constructor(minLatitude = 0, maxLatitude = 0, minLongitude = 0, maxLongitude = 0, precision = Constants.UNKNOWN_VALUE) {
-        this.snoopBounds = new SnoopBounds(minLatitude, maxLatitude, minLongitude, maxLongitude, precision);
+    constructor(snoopBounds) {
+        this.snoopBounds = snoopBounds;
         this.elevations = [];
     }
 

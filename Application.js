@@ -1,9 +1,6 @@
-const Snoop = require('./Snoop');
+const SnoopBuffer = require('./SnoopBuffer');
 
-let snoop = new Snoop(45, 48, 7, 8, 2);
 
-snoop.generateElevations();
+let snoopBuffer = new SnoopBuffer(40, 50, -5, 8, 1000, console.log);
 
-console.log("Not founds = " + snoop.findElevations());
-
-console.log(snoop.elevations);
+snoopBuffer.findElevations();
